@@ -1,0 +1,35 @@
+ <% include ../partials/header %>
+<div class="container-fluid">
+ <hr>
+    <div class="row-fluid">
+ <div class="widget-box">
+        <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
+          <h5>Tambah Materi</h5>
+        </div>
+            
+        <div class="widget-content nopadding">
+          <form action="/dashboard/admin/materi/add" method="post" enctype="multipart/form-data" class="form-horizontal">
+
+            <div class="control-group">
+              <label for="checkboxes" class="control-label">Nama Materi</label>
+              <div class="controls">
+                <input type="text" class="form-control" name="nama_materi">
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">File upload input</label>
+              <div class="controls">
+                <input type="file" name="foto_materi" />
+              </div>
+            </div>
+
+            <div class="form-actions">
+              <button type="submit" class="btn btn-success">Save</button>
+            </div>
+          </form>
+        </div>
+      </div>
+  </div>
+  </div>
+
+ <% include ../partials/footer %>
