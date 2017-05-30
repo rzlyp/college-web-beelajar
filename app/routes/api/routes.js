@@ -11,8 +11,7 @@ const ulasan = require('../../controller/api/ulasan');
 router.get('/',(req,res)=>{
 	res.json({message : "Welcome to beelajar api"});
 });
-router.get('/ulasan/:id_pengajar',ulasan.getUlasan);
-router.post('/ulasan',ulasan.postUlasan);
+
 /*
 	Register customer
 */
@@ -157,5 +156,7 @@ router.use((req,res,next)=>{
 	}
 });
 
+router.get('/ulasan/:id_pengajar',ulasan.getUlasan);
+router.post('/ulasan',ulasan.postUlasan);
 
 module.exports = router;
