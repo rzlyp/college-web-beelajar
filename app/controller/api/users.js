@@ -15,7 +15,7 @@ function UserController(){
 			no_telp : req.body.no_telp,
 			foto_customer : 'avatar.png',
 			password : bcrypt.hashSync(req.body.password),
-			role : 'user'
+			role : 'murid'
 		}
 
 		db.getConnection((err,con) => {

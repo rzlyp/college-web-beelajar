@@ -131,6 +131,7 @@ router.post('/auth/customer',(req,res)=>{
 	Materi routes api
 */
 router.get('/materi', materi.getMateri);
+router.post('/materi/search', materi.srcPengajarMateri);
 router.get('/pengajar/materi/:id_materi',materi.getPengajarMateri);
 
 
