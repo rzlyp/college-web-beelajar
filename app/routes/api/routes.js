@@ -6,7 +6,7 @@ const db = require('../../../config/database');
 const materi = require('../../controller/api/materi');
 const user = require('../../controller/api/users');
 const ulasan = require('../../controller/api/ulasan');
-
+const log = require('../../controller/api/log');
 
 router.get('/',(req,res)=>{
 	res.json({message : "Welcome to beelajar api"});
@@ -156,7 +156,16 @@ router.use((req,res,next)=>{
 	}
 });
 
+//Murid
 router.get('/ulasan/:id_pengajar',ulasan.getUlasan);
+router.put('/profile/update/:id_customer', user.updateProfileMurid);
+
+//Pengajar
 router.post('/ulasan',ulasan.postUlasan);
+router.get('/log/pengajar/:id_pengajar', log.getLogPengajar);
+router.post('/log/pengajar',log.postLogPengajar);
+
+
+
 
 module.exports = router;

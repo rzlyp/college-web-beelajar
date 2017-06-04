@@ -1,6 +1,7 @@
 const multer = require('multer');
 const bcrypt = require('bcrypt-nodejs');
 const jwt = require('jsonwebtoken');
+const fs = require('fs');
 
 const db = require('../../../config/database');
 const User = require('../../models/users');
@@ -67,6 +68,57 @@ function UserController(){
 			
 			});
 	}
+
+	this.updateProfileMurid = (req, res, next) =>{
+			var storage = multer.diskStorage({
+	      		destination : function(req,file,callback){
+	      			callback(null,'public/img');
+	      		},
+	      		filename : function(req,file,callback){
+	      			console.log(file);
+	      			callback(null,file.originalname);
+	      		}
+	      	});
+	      	var upload = multer({storage:storage}).single('foto_customer');
+
+	      	upload(req, res , (err)=>{
+				      		db.getConnection((err,con) => {
+					      		con.query("select * from customer where id_customer = ?", req.params.id_customer, (err, check) => {
+					      			var data = {
+							      			nama_customer : req.body.nama_customer,
+							      			foto_customer : check[0].foto_customer,
+							      			no_telp : req.body.no_telp,
+							      			email : req.body.email
+							      	}
+					      			if(req.file){
+						      				 data = {
+								      			nama_customer : req.body.nama_customer,
+								      			foto_customer : req.file.filename,
+								      			no_telp : req.body.no_telp,
+								      			email : req.body.email
+								      	   }
+
+								      	   if(check[0].foto_customer !== 'avatar.png'){
+								      	   		fs.unlink('public/img/'+check[0].foto_customer);
+								      	   }
+								      	   
+
+					      			}
+					      			con.query('update customer set ? where id_customer = '+req.params.id_customer, data,(err, data) =>{
+									con.release();
+
+									res.json({
+										status_code : 201,
+										message : "Success update profile"
+									});
+								});
+					      			
+					      		});
+								
+							});
+	      	});
+		}
+	
 
 }
 
