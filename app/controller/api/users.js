@@ -10,19 +10,21 @@ const User = require('../../models/users');
 function UserController(){
 	//make register function
 	this.registerUser = (req, res, next) => {
-		const dataUser = {
-			nama_customer : req.body.nama_user,
-			email : req.body.email,
-			no_telp : req.body.no_telp,
-			foto_customer : 'avatar.png',
-			password : bcrypt.hashSync(req.body.password),
-			role : 'murid'
-		}
+		
 
 		db.getConnection((err,con) => {
-			con.query("select * from customer where email = ?", dataUser.email, (err, check)=>{
+			con.query("select * from customer where email = ?", req.body.email, (err, check)=>{
+
 				if(check.length === 0){
-						con.query('insert into customer set ?', dataUuser,(err, data, user) =>{
+					const dataUser = {
+						nama_customer : req.body.nama_user,
+						email : req.body.email,
+						no_telp : req.body.no_telp,
+						foto_customer : 'avatar.png',
+						password : bcrypt.hashSync(req.body.password),
+						role : 'murid'
+					}
+						con.query('insert into customer set ?', dataUser,(err, data, user) =>{
 					
 
 					if(err)
