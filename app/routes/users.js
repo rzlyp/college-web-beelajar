@@ -15,12 +15,11 @@ module.exports = function(app,passport){
 		failureRedirect : '/pengajar/login',
 		failureFlash : true
 	}));
-	app.use(isNotLogged);
-	app.get('/pengajar/dashboard',pengajar.dashboard);
-	app.post('/pengajar/keahlian/add',keahlian.addKeahlian);
-	app.post('/pengajar/lokasi/add', lokasi.addLokasi);
-	app.get('/pengajar/vertifikasi',vertifikasi.vertifikasi);
-	app.post('/pengajar/vertifikasi',vertifikasi.postVertifikasi);
+	app.get('/pengajar/dashboard',isNotLogged,pengajar.dashboard);
+	app.post('/pengajar/keahlian/add',isNotLogged,keahlian.addKeahlian);
+	app.post('/pengajar/lokasi/add',isNotLogged, lokasi.addLokasi);
+	app.get('/pengajar/vertifikasi',isNotLogged,vertifikasi.vertifikasi);
+	app.post('/pengajar/vertifikasi,isNotLogged',vertifikasi.postVertifikasi);
 	app.get('/pengajar/logout',(req, res) =>{
 		req.logout();
 		res.redirect('/pengajar/login')
