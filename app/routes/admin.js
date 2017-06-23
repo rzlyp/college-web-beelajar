@@ -23,6 +23,7 @@ module.exports = function(app,passport){
 	app.post('/dashboard/admin/pengajar/vertifikasi/:id_pengajar', isNotLogged,pengajar.postVertifikasi);
 	app.get('/dashboard/admin/logout',(req, res) =>{
 		req.logout();
+		res.redirect('/login/admin');
 	});
 	function isLoggedIn(req,res,next){
 	    if(req.isAuthenticated())
