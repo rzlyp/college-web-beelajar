@@ -34,7 +34,7 @@ function MateriController(){
 			con.query('insert into materi set ?', data,(err, data) =>{
 				con.release();
 
-				res.render('/dashboard/admin/materi', {user : req.user});
+				res.redirect('/dashboard/admin/materi');
 			});
 		});
       	});
