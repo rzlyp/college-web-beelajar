@@ -19,7 +19,7 @@ module.exports = function(app,passport){
 	app.post('/pengajar/keahlian/add',isNotLogged,keahlian.addKeahlian);
 	app.post('/pengajar/lokasi/add',isNotLogged, lokasi.addLokasi);
 	app.get('/pengajar/vertifikasi',isNotLogged,vertifikasi.vertifikasi);
-	app.post('/pengajar/vertifikasi,isNotLogged',vertifikasi.postVertifikasi);
+	app.post('/pengajar/vertifikasi',isNotLogged,vertifikasi.postVertifikasi);
 	app.get('/pengajar/logout',(req, res) =>{
 		req.logout();
 		res.redirect('/pengajar/login')
