@@ -6,7 +6,6 @@
     <div class="quick-actions_homepage">
       <ul class="quick-actions">
         <li class="bg_lb"> <a href="index.html"> <i class="icon-dashboard"></i>  My Dashboard </a> </li>
-        <li class="bg_lg span3"> <a href="charts.html"> <i class="icon-signal"></i> Tarif</a> </li>
         <li class="bg_lo"> <a href="tables.html"> <i class="icon-th"></i> Jadwal</a> </li>
 
       </ul>
@@ -19,35 +18,33 @@
       <div class="span6">
         <div class="widget-box">
           <div class="widget-title bg_ly" data-toggle="collapse" href="#collapseG2"><span class="icon"><i class="icon-chevron-down"></i></span>
-            <h5>Latest Reviews</h5>
+            <h5>Ulasan Terbaru</h5>
           </div>
           <div class="widget-content nopadding collapse in" id="collapseG2">
             <ul class="recent-posts">
+            <% 
+            if((data.ulasan).length !== 0){ 
+            (data.ulasan).forEach(function(ulasan){ %>
               <li>
-                <div class="user-thumb"> <img width="40" height="40" alt="User" src="/img/demo/av1.jpg"> </div>
-                <div class="article-post"> <span class="user-info"> By: john Deo / Date: 2 Aug 2012 / Time:09:27 AM </span>
-                  <p><a href="#">This is a much longer one that will go on for a few lines.It has multiple paragraphs and is full of waffle to pad out the comment.</a> </p>
+                <div class="user-thumb"> <img width="40" height="40" alt="User" src="/img/avatar.png"> </div>
+                <div class="article-post"> <span class="user-info"> By: <%= ulasan.nama_customer %>/ Date: <%= ulasan.created_at %> </span>
+                  <p><a href="#"> <%= ulasan.ulasan %> </a> </p>
                 </div>
               </li>
-              <li>
-                <div class="user-thumb"> <img width="40" height="40" alt="User" src="/img/demo/av2.jpg"> </div>
-                <div class="article-post"> <span class="user-info"> By: john Deo / Date: 2 Aug 2012 / Time:09:27 AM </span>
-                  <p><a href="#">This is a much longer one that will go on for a few lines.It has multiple paragraphs and is full of waffle to pad out the comment.</a> </p>
-                </div>
-              </li>
-              <li>
-                <div class="user-thumb"> <img width="40" height="40" alt="User" src="/img/demo/av4.jpg"> </div>
-                <div class="article-post"> <span class="user-info"> By: john Deo / Date: 2 Aug 2012 / Time:09:27 AM </span>
-                  <p><a href="#">This is a much longer one that will go on for a few lines.Itaffle to pad out the comment.</a> </p>
-                </div>
-              <li>
+            <%  }); %> 
+            <li>
                 <button class="btn btn-warning btn-mini">View All</button>
               </li>
+            <%}else{
+                   %>
+                    <p> Ulasan tidak ada </p>
+            <% } %>  
+              
             </ul>
           </div>
         </div>
         
-
+        <!--
         <div class="widget-box">
           <div class="widget-title bg_lo"  data-toggle="collapse" href="#collapseG3" > <span class="icon"> <i class="icon-chevron-down"></i> </span>
             <h5>News updates</h5>
@@ -63,43 +60,129 @@
             <div class="new-update clearfix"> <i class="icon-question-sign"></i> <span class="update-notice"> <a title="" href="#"><strong>I am alwayse here if you have any question</strong></a> <span>we glad that you choose our template</span> </span> <span class="update-date"><span class="update-day">01</span>jan</span> </div>
           </div>
         </div>
-        
+        !-->
       </div>
       <div class="span6">
  
         
-       <div class="widget-box">
-          <div class="widget-title"> <span class="icon"><i class="icon-ok"></i></span>
-            <h5>Materi</h5>
-          </div>
-          <div class="widget-content">
-            <div class="todo">
-              <ul>
-                <li class="clearfix">
-                  <div class="txt"> Luanch This theme on Themeforest <span class="by label">Alex</span></div>
-                  <div class="pull-right"> <a class="tip" href="#" title="Edit Task"><i class="icon-pencil"></i></a> <a class="tip" href="#" title="Delete"><i class="icon-remove"></i></a> </div>
-                </li>
-                <li class="clearfix">
-                  <div class="txt"> Manage Pending Orders <span class="date badge badge-warning">Today</span> </div>
-                  <div class="pull-right"> <a class="tip" href="#" title="Edit Task"><i class="icon-pencil"></i></a> <a class="tip" href="#" title="Delete"><i class="icon-remove"></i></a> </div>
-                </li>
-                <li class="clearfix">
-                  <div class="txt"> MAke your desk clean <span class="by label">Admin</span></div>
-                  <div class="pull-right"> <a class="tip" href="#" title="Edit Task"><i class="icon-pencil"></i></a> <a class="tip" href="#" title="Delete"><i class="icon-remove"></i></a> </div>
-                </li>
-                <li class="clearfix">
-                  <div class="txt"> Today we celebrate the theme <span class="date badge badge-info">08.03.2013</span> </div>
-                  <div class="pull-right"> <a class="tip" href="#" title="Edit Task"><i class="icon-pencil"></i></a> <a class="tip" href="#" title="Delete"><i class="icon-remove"></i></a> </div>
-                </li>
-                <li class="clearfix">
-                  <div class="txt"> Manage all the orders <span class="date badge badge-important">12.03.2013</span> </div>
-                  <div class="pull-right"> <a class="tip" href="#" title="Edit Task"><i class="icon-pencil"></i></a> <a class="tip" href="#" title="Delete"><i class="icon-remove"></i></a> </div>
-                </li>
-              </ul>
+         <div class="widget-box">
+            <div class="widget-title"> <span class="icon"><i class="icon-ok"></i></span>
+              <h5>Keahlian</h5>
+              <a title="Tambah materi" href="#myAlert" data-toggle="modal" class="btn btn-success btn-mini" style="float:right;"><i class="icon-plus"></i> Tambah Keahlian</a>
             </div>
-          </div>
+            <div class="widget-content">
+              <div class="todo">
+                <ul>
+                  <% if((data.materi).length !== 0){ 
+                    (data.materi).forEach(function (keahlian){ %>
+
+                  
+                  <li class="clearfix">
+                    <div class="txt"> <%= keahlian.nama_materi %> </div>
+                    <div class="pull-right"> <a class="tip" href="#" title="Delete"><i class="icon-remove"></i></a> </div>
+                  </li>
+                  <% });
+                    }else{
+                   %>
+                    <p> Keahlian tidak ada </p>
+                  <% } %>
+                </ul>
+              </div>
+            </div>
+        </div>
+        <div class="widget-box">
+            <div class="widget-title"> <span class="icon"><i class="icon-ok"></i></span>
+              <h5>Lokasi Mengajar</h5>
+              
+            </div>
+            <div class="widget-content">
+              <div class="todo">
+                <ul>
+                  <% 
+                      if((data.lokasi).length !== 0){
+                      (data.lokasi).forEach(function (lokasi){ %>
+
+                      
+                      <li class="clearfix">
+                        <div class="txt"> <%= lokasi.lokasi_mengajar %> </div>
+                        <div class="pull-right"> <a class="tip" href="#" title="Update"><i class="icon-pencil"></i></a> </div>
+                      </li>
+                  <% });
+                    }else{
+                   %>
+                    <a title="Tambah materi" href="#alamat" data-toggle="modal" class="btn btn-success btn-mini"><i class="icon-plus"></i> Tambah Alamat</a>
+                  <% } %>  
+                </ul>
+              </div>
+            </div>
+        </div>
+        <div class="widget-box">
+            <div class="widget-title"> <span class="icon"><i class="icon-ok"></i></span>
+              <h5>Tarif Mengajar</h5>
+              
+            </div>
+            <div class="widget-content">
+              <div class="todo">
+                <ul>
+                <% if((user.tarif_mengajar !== "")) { %>
+
+                  <li class="clearfix">
+                    <div class="txt"> Rp. <%= user.tarif_mengajar %> / Jam </div>
+                    <div class="pull-right"> <a class="tip" href="#" title="Ubah"><i class="icon-pencil"></i></a> </div>
+                  </li>
+                <% } else { %>
+                    <a title="Tambah Tarif" href="#myAlert" data-toggle="modal" class="btn btn-success btn-mini"><i class="icon-plus"></i> Tambah Tarif</a>
+                <% } %>  
+                </ul>
+              </div>
+            </div>
         </div>
       </div>
     </div>
   </div>
+
+          <div id="myAlert" class="modal hide">
+              <div class="modal-header">
+                <button data-dismiss="modal" class="close" type="button">×</button>
+                <h3>Tambah Keahlian</h3>
+              </div>
+              <div class="modal-body" style="overflow-y:visible;">
+                  <form action="/pengajar/keahlian/add" method="post" class="form-horizontal">
+
+                  <div class="control-group">
+                    <label for="checkboxes" class="control-label">Nama Keahlian</label>
+                    <div class="controls">
+                      <select class="form-control" name="materi">
+                        <% (data.all_materi).forEach(function (materi){ %>
+                        <option value="<%= materi.id_materi %>"> <%= materi.nama_materi %> </option>
+                        <% }); %>
+                      </select>
+                    </div>
+                  </div>
+                 
+
+                  
+                
+              </div>
+              <div class="modal-footer"><button type="submit" class="btn btn-success">Save</button> <a data-dismiss="modal" class="btn" href="#">Cancel</a> </div>
+              </form>
+            </div>
+
+          <div id="alamat" class="modal hide">
+              <div class="modal-header">
+                <button data-dismiss="modal" class="close" type="button">×</button>
+                <h3>Tambah Lokasi Mengajar</h3>
+              </div>
+              <div class="modal-body">
+                  <form action="/pengajar/lokasi/add" method="post" class="form-horizontal">
+
+                  
+                      <textarea name="lokasi_mengajar" rows="8" style="width:90%;margin:10px;"></textarea>
+                    
+                  
+
+              </div>
+              <div class="modal-footer"><button type="submit" class="btn btn-success">Save</button> <a data-dismiss="modal" class="btn" href="#">Cancel</a> </div>
+              </form>
+            </div>            
 <% include ./partials/footer %>

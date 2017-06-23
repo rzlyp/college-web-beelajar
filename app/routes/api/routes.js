@@ -24,6 +24,7 @@ router.get('/',(req,res)=>{
 router.post('/register',user.registerUser);
 router.post('/auth/pengajar',(req,res)=>{
 	const email = req.body.email;
+	const firebase_token = req.body.firebase_token;
 	db.getConnection(function(err,con){
 		con.query('SELECT * FROM pengajar where email = ? LIMIT 1',email,function(err,user){
 		con.release();
@@ -52,6 +53,10 @@ router.post('/auth/pengajar',(req,res)=>{
 							message : 'Failed ,wrong password or username'
 						});
 					}else{
+						con.query('Update pengajar set firebase_token = '+firebase_token+' where email = ? LIMIT 1',email,function(err,check){
+							con.release();
+						});
+						
 						var token = jwt.sign(user[0],"beelajarSecret",{
 							expiresIn : 60*60*24
 						});

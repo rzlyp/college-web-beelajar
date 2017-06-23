@@ -1,0 +1,65 @@
+<% include ./partials/header %>
+	<!--main-container-part-->
+
+<!--Action boxes-->
+  <div class="container-fluid">
+  <div class="row-fluid">
+    <div class="widget-box">
+
+        <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
+          <h5>Vertifikasi Akun</h5>
+        </div>
+        <div class="widget-content nopadding">
+         
+      <form action="/pengajar/vertifikasi" method="post" enctype="multipart/form-data" class="form-horizontal">
+            <div class="control-group">
+              <label class="control-label">Nama instansi</label>
+              <div class="controls">
+                <input type="text" name="nama_instansi" class="span7" <% if(user.nama_instansi){ %> value="<%= user.nama_instansi %>" disabled <% } %> />
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">Jurusan Kuliah</label>
+              <div class="controls">
+                <input type="text" name="jurusan_kuliah" class="span7" <% if(user.jurusan_kuliah){ %> value="<%= user.jurusan_kuliah %>" disabled <% } %>/>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">Foto surat aktif mahasiswa</label>
+              <div class="controls">
+                <input type="file" name="surat_aktif" />
+              </div>
+            </div>
+            <% if(user.foto_surat_aktif){ %> 
+                  <div class="control-group">
+                <div class="controls">
+                  <img src="/vertifikasi/<%= user.foto_surat_aktif %>" width="200" height="200" />
+                  <label><%= user.foto_surat_aktif %> </label>
+                </div>
+              </div>
+             <% } %>
+             
+            <div class="control-group">
+              <label class="control-label">Foto KTM</label>
+              <div class="controls">
+                <input type="file" name="foto_ktm" />
+              </div>
+            </div>
+            <% if(user.foto_ktm){ %> 
+                  <div class="control-group">
+                <div class="controls">
+                  <img src="/vertifikasi/<%= user.foto_ktm %>" width="200" height="200" />
+                  <label><%= user.foto_ktm %> </label>
+                </div>
+              </div>
+             <% } %>
+            <div class="form-actions">
+              <input type="submit" value="Kirim" class="btn btn-success btn-large" style="float:right">
+            </div>
+          </form>
+        </div>
+      </div>
+      </div>
+  </div>
+    
+<% include ./partials/footer %>

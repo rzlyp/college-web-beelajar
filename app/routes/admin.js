@@ -17,7 +17,9 @@ module.exports = function(app,passport){
 
 	app.get('/dashboard/admin/materi',isNotLogged, materi.getMateri);
 	app.post('/dashboard/admin/materi/add',isNotLogged, materi.postAddMateri);
-
+	app.get('/logout',(req, res) =>{
+		req.logout();
+	});
 	function isLoggedIn(req,res,next){
 	    if(req.isAuthenticated())
 	      res.redirect('/dashboard/admin');

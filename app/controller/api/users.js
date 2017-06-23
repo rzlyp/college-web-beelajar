@@ -22,7 +22,8 @@ function UserController(){
 						no_telp : req.body.no_telp,
 						foto_customer : 'avatar.png',
 						password : bcrypt.hashSync(req.body.password),
-						role : 'murid'
+						role : 'murid',
+						firebase_token : req.body.firebase_token
 					}
 						con.query('insert into customer set ?', dataUser,(err, data, user) =>{
 					
