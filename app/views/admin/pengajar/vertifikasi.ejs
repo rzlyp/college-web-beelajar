@@ -1,0 +1,79 @@
+<% include ../partials/header %>
+	<!--main-container-part-->
+
+<!--Action boxes-->
+  <div class="container-fluid">
+  <div class="row-fluid">
+    <div class="widget-box">
+
+        <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
+          <h5>Vertifikasi Akun Pengajar</h5>
+        </div>
+        <div class="widget-content nopadding">
+         
+            <form class="form-horizontal">
+            <div class="control-group">
+              <label class="control-label">Nama Pengajar</label>
+              <div class="controls">
+                <label class="control-label"><%= pengajar.nama_pengajar %></label>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">Nomor Telepon</label>
+              <div class="controls">
+                <label class="control-label"><%= pengajar.no_telp %></label>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">Nama instansi</label>
+              <div class="controls">
+                <label class="control-label"><%= pengajar.nama_instansi %></label>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">Jurusan Kuliah</label>
+              <div class="controls">
+                <label class="control-label"><%= pengajar.jurusan_kuliah %> </label>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">Foto surat aktif mahasiswa</label>
+                <div class="controls">
+                  <img src="/vertifikasi/<%= pengajar.foto_surat_aktif %>" width="400" height="400" />
+                 
+                </div>
+              </div>
+                  <div class="control-group">
+                  <label class="control-label">Foto KTM</label>
+                <div class="controls">
+                  <img src="/vertifikasi/<%= pengajar.foto_ktm %>" width="400" height="400" />
+                </div>
+              </div>
+             </form> 
+            <div class="form-actions">
+                  <input type="submit" value="Vertifikasi" href="#vertifikasi" data-toggle="modal" class="btn btn-success btn-large" style="float:right">
+              
+            </div>
+        </div>
+      </div>
+      </div>
+  </div>
+   <div id="vertifikasi" class="modal hide">
+
+              <form action="/dashboard/admin/pengajar/vertifikasi/<%= pengajar.id_pengajar %>" method="post">
+              <div class="modal-header">
+                <button data-dismiss="modal" class="close" type="button">×</button>
+                <h3>Vertifikasi</h3>
+              </div>
+              <div class="modal-body">
+
+                  
+                      <h3>Vertifikasi akun pengajar <%= pengajar.nama_pengajar %> ?</h3>
+                    
+                  
+
+              </div>
+              <div class="modal-footer"><button type="submit" class="btn btn-warning">Vertifikasi </button> <a data-dismiss="modal" class="btn" href="#">Cancel</a> </div>
+              </form>
+            </div> 
+<% include ../partials/footer %>

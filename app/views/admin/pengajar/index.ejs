@@ -1,0 +1,44 @@
+<% include ../partials/header %>
+<div class="container-fluid">
+    <div class="row-fluid">
+      <div class="span12">
+        <div class="widget-box">
+              <div class="widget-title"> <span class="icon"><i class="icon-book"></i></span>
+                <h5>Daftar Pengajar</h5>
+              </div>
+              <div class="widget-content nopadding">
+                <table class="table table-bordered data-table">
+                  <thead>
+                    <tr>
+                      <th>No. </th>
+                      <th>Nama Pengajar</th>
+                      <th>Email</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% 
+                      var no = 1;
+                      pengajar.forEach(function(data){ %>
+                        <tr class="gradeX">
+                          <td> <%= no %>
+                          <td> <%= data.nama_pengajar %></td>
+                          <td> <%= data.email %> </td>
+                          <td>
+                              <a class="btn btn-primary btn-mini" href="/dashboard/admin/pengajar/log" >Lihat Log</a> 
+                              <% if(data.status === 'vertified'){ %>
+                                <a class="btn btn-success btn-mini" href="#">Vertified</a>
+                               <% }else{ %> 
+                                <a class="btn btn-error btn-mini" href="/dashboard/admin/pengajar/vertifikasi/<%= data.id_pengajar %>">Vertifikasi</a>
+                              <% } %>
+                          </td>
+                        </tr>
+                    <% no++; }); %>
+                  </tbody>
+                </table>
+              </div>
+        </div>
+    </div> 
+   </div> 
+</div>
+<% include ../partials/footer %>

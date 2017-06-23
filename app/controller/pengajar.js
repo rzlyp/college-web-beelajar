@@ -26,7 +26,7 @@ function PegajarController(){
 				if(err)
 					console.log(err);
 				req.flash('message', 'Register Berhasil Silahkan Login');
-				res.render('pengajar/register',{message : 'Register Berhasil Silahkan Login'});
+				res.render('pengajar/register',{message : "Register Berhasil Silahkan <a href='/pengajar/login' class='btn btn-success btn-mini'> Login </a>"});
 			});
 		});
 	}

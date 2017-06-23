@@ -31,8 +31,9 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 
-require('./app/routes/users')(app,passport);
+
 require('./app/routes/admin')(app,passport);
+require('./app/routes/users')(app,passport);
 app.use('/api',require('./app/routes/api/routes'));
 app.use(index);
 

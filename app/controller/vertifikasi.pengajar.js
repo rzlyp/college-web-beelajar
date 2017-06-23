@@ -35,15 +35,7 @@ function VertifikasiController(){
 			});
       	});
 	}
-	this.ubahLokasi = (req, res, next) =>{
-		con.query("delete from pengajar_materi where id_pengajar_materi ? ", req.params.id_pengajar_materi , (err, data) =>{
-				con.release();	
-					if(err)
-						console.log(err);
-
-					res.ren('/pengajar/dashboard');
-		});
-	}
+	
 }
 
 module.exports = new VertifikasiController();
