@@ -76,6 +76,20 @@ function PegajarController(){
 				});
 		});
 	}
+	this.updateTarif = (req, res, next) =>{
+		const data = {
+			tarif_mengajar : req.body.tarif
+		};
+		db.getConnection((err,con)=>{
+			con.query("UPDATE pengajar SET ? where id_pengajar = ?", [data,req.user.id_pengajar], (err, data) =>{
+				con.release();
+				if(err)
+					res.end(err);
+
+				res.redirect('/pengajar/dashboard');
+			});
+		});
+	}
 }
 
 module.exports = new PegajarController();

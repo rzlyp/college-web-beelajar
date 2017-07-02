@@ -12,6 +12,12 @@
 <link href="/font-awesome/css/font-awesome.css" rel="stylesheet" />
 <link rel="stylesheet" href="/css/jquery.gritter.css" />
 <link rel="stylesheet" href="/css/select2.css" />
+
+<link rel="stylesheet" type="text/css" href="/flatpickr/dist/flatpickr.material_blue.min.css">
+<link rel="stylesheet" type="text/css" href="/css/themes/flat-blue.css">
+
+
+<script src="/flatpickr/dist/flatpickr.min.js"></script>
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800' rel='stylesheet' type='text/css'>
 </head>
 <body>
@@ -34,7 +40,12 @@
         <li><a href="/pengajar/logout"><i class="icon-key"></i> Log Out</a></li>
       </ul>
     </li>
-    <li class=""><a title="" href="login.html"><i class="icon icon-share-alt"></i> <span class="text">Logout</span></a></li>
+    <li class=""><a title="" href="/pengajar/logout"><i class="icon icon-share-alt"></i> <span class="text">Logout</span></a></li>
+    <% if(user.status === 'unvertified'){ %>
+      <li><a href="/pengajar/vertifikasi">Status Akun : <b style="color:red;"> <%= user.status %> </b></a></li>
+    <%}else{%>
+      <li class=""><a title="" href="#"> Status Akun : <b style="color:green;"> <%= user.status %> </b> </a></li>
+    <% } %>
   </ul>
 </div>
 <!--close-top-Header-menu-->

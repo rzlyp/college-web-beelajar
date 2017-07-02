@@ -5,8 +5,8 @@
   <div class="container-fluid">
     <div class="quick-actions_homepage">
       <ul class="quick-actions">
-        <li class="bg_lb"> <a href="index.html"> <i class="icon-dashboard"></i>  My Dashboard </a> </li>
-        <li class="bg_lo"> <a href="tables.html"> <i class="icon-th"></i> Jadwal</a> </li>
+        <li class="bg_lb"> <a href="/pengajar/dashboard"> <i class="icon-dashboard"></i>  My Dashboard </a> </li>
+        <li class="bg_lo"> <a href="/pengajar/jadwal"> <i class="icon-th"></i> Jadwal</a> </li>
 
       </ul>
     </div>
@@ -79,7 +79,7 @@
                   
                   <li class="clearfix">
                     <div class="txt"> <%= keahlian.nama_materi %> </div>
-                    <div class="pull-right"> <a class="tip" href="#" title="Delete"><i class="icon-remove"></i></a> </div>
+                    <div class="pull-right"> <a class="btn btn-danger btn-mini" href="#deleteKeahlian<%= keahlian.id_pengajar_materi %>" data-toggle="modal" title="Delete"><i class="icon-remove"> Hapus</i></a> </div>
                   </li>
                   <% });
                     }else{
@@ -105,7 +105,7 @@
                       
                       <li class="clearfix">
                         <div class="txt"> <%= lokasi.lokasi_mengajar %> </div>
-                        <div class="pull-right"> <a class="tip" href="#" title="Update"><i class="icon-pencil"></i></a> </div>
+                        <div class="pull-right"> <a class="btn btn-info btn-mini" href="#alamat" data-toggle="modal" title="Update"><i class="icon-pencil"> Ubah</i></a> </div>
                       </li>
                   <% });
                     }else{
@@ -128,10 +128,10 @@
 
                   <li class="clearfix">
                     <div class="txt"> Rp. <%= user.tarif_mengajar %> / Jam </div>
-                    <div class="pull-right"> <a class="tip" href="#" title="Ubah"><i class="icon-pencil"></i></a> </div>
+                    <div class="pull-right"> <a class="btn btn-info btn-mini" href="#tarif" data-toggle="modal" title="Ubah"><i class="icon-pencil"> Ubah</i></a> </div>
                   </li>
                 <% } else { %>
-                    <a title="Tambah Tarif" href="#myAlert" data-toggle="modal" class="btn btn-success btn-mini"><i class="icon-plus"></i> Tambah Tarif</a>
+                    <a title="Tambah Tarif" href="#tarif" data-toggle="modal" class="btn btn-success btn-mini"><i class="icon-plus"> Ubah</i> Tambah Tarif</a>
                 <% } %>  
                 </ul>
               </div>
@@ -141,6 +141,7 @@
     </div>
   </div>
 
+<!-- Modal Area-->
           <div id="myAlert" class="modal hide">
               <div class="modal-header">
                 <button data-dismiss="modal" class="close" type="button">×</button>
@@ -168,21 +169,76 @@
               </form>
             </div>
 
+
+            <div id="tarif" class="modal hide">
+              <div class="modal-header">
+                <button data-dismiss="modal" class="close" type="button">×</button>
+                <h3>Tambah Keahlian</h3>
+              </div>
+              <div class="modal-body" style="overflow-y:visible;">
+                  <form action="/pengajar/tarif" method="post" class="form-horizontal">
+
+                  <div class="control-group">
+                    <label for="checkboxes" class="control-label">Tarif</label>
+                    <div class="controls">
+                        Rp. <input type="text" class="form-control" name="tarif" placeholder="0" value="<%= user.tarif_mengajar %>"> /Jam
+                    </div>
+                  </div>
+                 
+
+                  
+                
+              </div>
+              <div class="modal-footer"><button type="submit" class="btn btn-success">Save</button> <a data-dismiss="modal" class="btn" href="#">Cancel</a> </div>
+              </form>
+            </div>
+
+
+
           <div id="alamat" class="modal hide">
               <div class="modal-header">
                 <button data-dismiss="modal" class="close" type="button">×</button>
                 <h3>Tambah Lokasi Mengajar</h3>
               </div>
               <div class="modal-body">
-                  <form action="/pengajar/lokasi/add" method="post" class="form-horizontal">
+              <%  if((data.lokasi).length !== 0){
+                      (data.lokasi).forEach(function (lokasi){ %>
+                  <form action="/pengajar/lokasi/edit/<%= lokasi.id_tempat %>" method="post" class="form-horizontal">
 
-                  
-                      <textarea name="lokasi_mengajar" rows="8" style="width:90%;margin:10px;"></textarea>
+                      
+                      <textarea name="lokasi_mengajar" rows="8" style="width:90%;margin:10px;"><%= lokasi.lokasi_mengajar %></textarea>
                     
-                  
+               <% });
+                  }else{%>   
+                    <form action="/pengajar/lokasi/add" method="post" class="form-horizontal">
+
+                      
+                      <textarea name="lokasi_mengajar" rows="8" style="width:90%;margin:10px;"></textarea>
+               <% } %>     
 
               </div>
               <div class="modal-footer"><button type="submit" class="btn btn-success">Save</button> <a data-dismiss="modal" class="btn" href="#">Cancel</a> </div>
               </form>
-            </div>            
+            </div>    
+            <% (data.materi).forEach(function (keahlian){ %>
+
+                  
+                  <div id="deleteKeahlian<%= keahlian.id_pengajar_materi %>" class="modal hide">
+                    <div class="modal-header">
+                      <button data-dismiss="modal" class="close" type="button">×</button>
+                      <h3>Hapus</h3>
+                    </div>
+                    <div class="modal-body">
+                        <form action="/pengajar/keahlian/<%= keahlian.id_pengajar_materi %>" method="post" class="form-horizontal">
+
+                        
+                           <h2> Hapus Keahlian <%= keahlian.nama_materi %> ? </h2>
+                          
+                        
+
+                    </div>
+                    <div class="modal-footer"><button type="submit" class="btn btn-danger">Hapus</button> <a data-dismiss="modal" class="btn" href="#">Cancel</a> </div>
+                    </form>
+                  </div>  
+                  <% }); %>        
 <% include ./partials/footer %>

@@ -34,7 +34,38 @@
 
 <script src="/js/matrix.form_common.js"></script> 
  
+<script type="text/javascript">
+        flatpickr("#jam_mulai", {
+           enableTime: true,
+          noCalendar: true,
 
+          enableSeconds: false, // disabled by default
+
+          time_24hr: false, // AM/PM time picker is used by default
+
+          // default format
+          dateFormat: "H:i", 
+
+          // initial values for time. don't use these to preload a date
+          defaultHour: 12,
+          defaultMinute: 0
+         });
+        flatpickr("#jam_selesai", {
+           enableTime: true,
+          noCalendar: true,
+
+          enableSeconds: false, // disabled by default
+
+          time_24hr: false, // AM/PM time picker is used by default
+
+          // default format
+          dateFormat: "H:i", 
+
+          // initial values for time. don't use these to preload a date
+          defaultHour: 12,
+          defaultMinute: 0
+         });
+ </script>  
 <script type="text/javascript">
   // This function is called from the pop-up menus to transfer to
   // a different page. Ignore if the value returned is a null string:

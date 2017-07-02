@@ -24,6 +24,10 @@ function MateriController(){
       	var upload = multer({storage:storage}).single('foto_materi');
 
       	upload(req, res , (err)=>{
+                  if(err){
+                        res.end("Error multer "+err);
+                  }
+
       		const nama_materi = req.body.nama_materi;
       		const foto_materi = req.file.filename;
       		const data = {

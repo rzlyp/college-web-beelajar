@@ -17,12 +17,14 @@ function KeahlianController(){
 		});
 	}
 	this.removeKeahlian = (req, res, next) =>{
-		con.query("delete from pengajar_materi where id_pengajar_materi ? ", req.params.id_pengajar_materi , (err, data) =>{
-				con.release();	
-					if(err)
-						console.log(err);
+		db.getConnection((err, con) => {
+			con.query("delete from pengajar_materi where id_pengajar_materi = ? ", req.params.id_pengajar_materi , (err, data) =>{
+					con.release();	
+						if(err)
+							console.log(err);
 
-					res.redirect('/pengajar/dashboard');
+						res.redirect('/pengajar/dashboard');
+			});
 		});
 	}
 }

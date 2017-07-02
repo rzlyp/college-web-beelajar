@@ -17,12 +17,17 @@ function LokasiController(){
 		});
 	}
 	this.ubahLokasi = (req, res, next) =>{
-		con.query("delete from pengajar_materi where id_pengajar_materi ? ", req.params.id_pengajar_materi , (err, data) =>{
-				con.release();	
-					if(err)
-						console.log(err);
+		const data = {
+			lokasi_mengajar : req.body.lokasi_mengajar
+		};
+		db.getConnection((err, con) => {
+			con.query("update lokasi_mengajar set ? where id_tempat = ? ",[data,req.params.id_tempat] , (err, data) =>{
+					con.release();	
+						if(err)
+							console.log(err);
 
-					res.redirect('/pengajar/dashboard');
+						res.redirect('/pengajar/dashboard');
+			});
 		});
 	}
 }

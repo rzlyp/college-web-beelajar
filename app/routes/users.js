@@ -2,6 +2,7 @@ const pengajar = require('../controller/pengajar');
 const keahlian = require('../controller/keahlian.pengajar');
 const lokasi = require('../controller/lokasi.pengajar');
 const vertifikasi = require('../controller/vertifikasi.pengajar');
+const jadwal = require('../controller/jadwal.pengajar');
 
 module.exports = function(app,passport){
 	app.get('/signup',pengajar.getRegister);
@@ -17,9 +18,14 @@ module.exports = function(app,passport){
 	}));
 	app.get('/pengajar/dashboard',isNotLogged,pengajar.dashboard);
 	app.post('/pengajar/keahlian/add',isNotLogged,keahlian.addKeahlian);
+	app.post('/pengajar/keahlian/:id_pengajar_materi',isNotLogged,keahlian.removeKeahlian);
 	app.post('/pengajar/lokasi/add',isNotLogged, lokasi.addLokasi);
+	app.post('/pengajar/lokasi/edit/:id_tempat',isNotLogged, lokasi.ubahLokasi);
 	app.get('/pengajar/vertifikasi',isNotLogged,vertifikasi.vertifikasi);
 	app.post('/pengajar/vertifikasi',isNotLogged,vertifikasi.postVertifikasi);
+	app.get('/pengajar/jadwal',isNotLogged,jadwal.getJadwal);
+	app.post('/pengajar/jadwal/add',isNotLogged,jadwal.postAddJadwal);
+	app.post('/pengajar/tarif',isNotLogged, pengajar.updateTarif);
 	app.get('/pengajar/logout',(req, res) =>{
 		req.logout();
 		res.redirect('/pengajar/login')
