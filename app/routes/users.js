@@ -25,6 +25,8 @@ module.exports = function(app,passport){
 	app.post('/pengajar/vertifikasi',isNotLogged,vertifikasi.postVertifikasi);
 	app.get('/pengajar/jadwal',isNotLogged,jadwal.getJadwal);
 	app.post('/pengajar/jadwal/add',isNotLogged,jadwal.postAddJadwal);
+	app.post('/pengajar/jadwal/edit/:id_jadwal',isNotLogged,jadwal.postEditJadwal);
+	app.post('/pengajar/jadwal/hapus/:id_jadwal',isNotLogged,jadwal.removeJadwal);
 	app.post('/pengajar/tarif',isNotLogged, pengajar.updateTarif);
 	app.get('/pengajar/logout',(req, res) =>{
 		req.logout();

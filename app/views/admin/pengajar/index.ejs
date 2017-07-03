@@ -25,7 +25,7 @@
                           <td> <%= data.nama_pengajar %></td>
                           <td> <%= data.email %> </td>
                           <td>
-                              <a class="btn btn-primary btn-mini" href="/dashboard/admin/pengajar/log" >Lihat Log</a> 
+                              <a class="btn btn-primary btn-mini" href="/dashboard/admin/pengajar/log/<%= data.id_pengajar %>" >Lihat Log</a> 
                               <% if(data.status === 'vertified'){ %>
                                 <a class="btn btn-success btn-mini" href="#">Vertified</a>
                                <% }else{ %> 

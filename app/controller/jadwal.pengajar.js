@@ -29,6 +29,35 @@ function JadwalController(){
 		});
 
 	}
+	this.postEditJadwal = (req, res, next) =>{
+			
+			const data = {
+				hari : req.body.hari,
+				jam_mulai : req.body.jam_mulai,
+				jam_selesai : req.body.jam_selesai
+			};
+			
+      		db.getConnection((err,con) => {
+			con.query('UPDATE jadwal set ? where id_jadwal = ?', [data, req.params.id_jadwal],(err, data) =>{
+				con.release();
+
+				res.redirect('/pengajar/jadwal');
+			});
+		});
+
+	}
+	this.removeJadwal = (req, res, next) =>{
+		
+			
+      		db.getConnection((err,con) => {
+			con.query('DELETE FROM jadwal where id_jadwal = ?', req.params.id_jadwal,(err, data) =>{
+				con.release();
+
+				res.redirect('/pengajar/jadwal');
+			});
+		});
+
+	}
 }
 
 module.exports = new JadwalController();

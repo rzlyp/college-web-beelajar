@@ -1,0 +1,51 @@
+<% include ../partials/header %>
+<div class="container-fluid">
+    <div class="row-fluid">
+      <div class="span12">
+        <div class="widget-box">
+              <div class="widget-title"> <span class="icon"><i class="icon-book"></i></span>
+                <h5>Jadwal</h5>
+                <a title="Tambah materi" href="#myAlert" data-toggle="modal" class="btn btn-success btn-mini" style="float:right;"><i class="icon-plus"></i> Tambah Jadwal</a>
+              </div>
+              <div class="widget-content nopadding">
+                <table class="table table-bordered data-table">
+                  <thead>
+                    <tr>
+                      <th>No. </th>
+                      <th>Nama Murid</th>
+                      <th>Materi</th>
+                      <th>Mulai Mengajar</th>
+                      <th>Selesai Selesai Mengajar</th>
+                      <th>Durasi</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% 
+                      var no = 1;
+                      log.forEach(function(data){ %>
+                        <tr class="gradeX">
+                          <td> <%= no %>
+                          <td> <%= data.nama_customer %></td>
+                          <td> <%= data.nama_materi %></td>
+                          <td> <%= data.mulai_mengajar %></td>
+                          <td> <%= data.akhir_mengajar %> </td>
+                          <td>  
+                                <% var akhir = new Date(data.s_akhir).getTime();
+                                   var awal = new Date(data.s_mulai).getTime(); 
+                                   var selish = akhir - awal;
+                                   var diffHrs = Math.floor((selish % 86400000) / 3600000);
+                                  var mins = Math.round(((selish % 86400000) % 3600000) / 60000);
+                                   %>
+                                <%= diffHrs %> Jam <%= mins %> Menit
+                          </td>
+                        </tr>
+                    <% no++; }); %>
+                  </tbody>
+                </table>
+              </div>
+        </div>
+    </div> 
+   </div> 
+</div>
+
+<% include ../partials/footer %>

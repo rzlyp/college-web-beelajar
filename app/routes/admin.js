@@ -1,5 +1,6 @@
 const materi = require('../controller/materi.admin');
 const pengajar = require('../controller/pengajar.admin');
+const log = require('../controller/log.admin');
 
 module.exports = function(app,passport){
 	app.get('/login/admin',isLoggedIn,(req, res) => {
@@ -21,6 +22,7 @@ module.exports = function(app,passport){
 	app.get('/dashboard/admin/pengajar', isNotLogged,pengajar.getPengajar);
 	app.get('/dashboard/admin/pengajar/vertifikasi/:id_pengajar', isNotLogged,pengajar.getVertifikasi);
 	app.post('/dashboard/admin/pengajar/vertifikasi/:id_pengajar', isNotLogged,pengajar.postVertifikasi);
+	app.get('/dashboard/admin/pengajar/log/:id_pengajar', isNotLogged,log.getLog);
 	app.get('/dashboard/admin/logout',(req, res) =>{
 		req.logout();
 		res.redirect('/login/admin');
