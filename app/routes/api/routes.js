@@ -22,7 +22,7 @@ router.get('/',(req,res)=>{
 */
 
 router.post('/register',user.registerUser);
-router.get('/pengajar/profile/:id_pengajar',user.getProfile);
+router.get('/pengajar/profile/:id_pengajar/:id_customer',user.getProfile);
 router.post('/auth/pengajar',(req,res)=>{
 	const email = req.body.email;
 	const firebase_token = req.body.firebase_token;

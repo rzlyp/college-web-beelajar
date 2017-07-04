@@ -137,6 +137,19 @@ function UserController(){
 							callback(null, user);
 						});
 					},
+					status_pilih : function(callback){
+						con.query("select * from kelas_pengajar where id_pengajar = ? AND id_customer = ?", [req.params.id_pengajar, req.params.id_customer], (err, data)=>{
+							if(err)
+								res.send(err);
+
+							var status = false;
+							if(data.length > 0){
+								status = true;
+							}
+
+							callback(null, status);
+						});
+					},
 					keahlian : function(callback){
 						con.query('select materi.nama_materi from pengajar_materi INNER JOIN materi ON materi.id_materi = pengajar_materi.id_materi WHERE id_pengajar = ?',req.params.id_pengajar,function(err,user){
 							

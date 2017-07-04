@@ -40,14 +40,46 @@ function LogController(){
 			};
 
 			db.getConnection((err, con)=>{
-				con.query("INSERT INTO kelas_pengajar SET ? ", data, (err, status) =>{
+				con.query("SELECT * FROM kelas_pengajar WHERE id_pengajar = ? AND id_customer = ?",[data.id_pengajar, data.id_customer], (err, counts)=>{
+					if(counts.length === 0){
+						con.query("INSERT INTO kelas_pengajar SET ? ", data, (err, status) =>{
+							con.release();
+							if(err)
+								res.end(err);
+
+							res.json({
+								status_code : 201,
+								message : "Berhasil memilih pengajar"
+							});
+						});
+					}else{
+						con.query("DELETE FROM kelas_pengajar WHERE id_kelas_pengajar = ?", counts[0].id_kelas_pengajar , (err, status) =>{
+							con.release();
+							if(err)
+								res.end(err);
+
+							res.json({
+								status_code : 201,
+								message : "Berhasil membatalkan pengajar"
+							});
+						});
+					}
+				});
+				
+			});
+		}
+		this.postRemove = (req, res, next) =>{
+		
+
+			db.getConnection((err, con)=>{
+				con.query("DELETE FROM kelas_pengajar WHERE id_pengajar = ? AND id_customer = ?", [req.params.id_pengajar, req.params.id_customer], (err, status) =>{
 					con.release();
 					if(err)
 						res.end(err);
 
 					res.json({
 						status_code : 201,
-						message : "Berhasil memilih pengajar"
+						message : "Berhasil menghapus pengajar"
 					});
 				});
 			});
