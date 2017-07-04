@@ -168,8 +168,9 @@ router.put('/profile/update/:id_customer', user.updateProfileMurid);
 
 //Pengajar
 router.post('/ulasan',ulasan.postUlasan);
-router.get('/log/pengajar/:id_pengajar', log.getLogPengajar);
+router.get('/log/customer/:id_customer', log.getLogMurid);
 router.post('/log/pengajar',log.postLogPengajar);
+router.post('/murid/kelas',log.postPilihKelas);
 
 
 
