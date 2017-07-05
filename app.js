@@ -16,7 +16,7 @@ var app = express();
 // view engine setup
 
 
-app.use(express.static(path.join(__dirname, 'public')));
+
 app.set('views', path.join(__dirname, 'app/views'));
 app.set('view engine', 'ejs');
 
@@ -37,7 +37,7 @@ require('./app/routes/admin')(app,passport);
 require('./app/routes/users')(app,passport);
 app.use('/api',require('./app/routes/api/routes'));
 app.use(index);
-
+app.use(express.static(path.join(__dirname, 'public')));
 
 // error handler
 app.use(function(err, req, res, next) {
