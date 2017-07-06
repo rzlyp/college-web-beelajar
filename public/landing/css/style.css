@@ -1,0 +1,133 @@
+.header-content-inner .badges  {
+    padding: 0px;
+    height: 100px;
+    width: 150px;
+    
+}
+
+.navbar-brand > img {
+    height: 80px;
+    width: 80px;
+    margin-top: -30px;
+}
+
+header .header-content .header-content-inner h1 {
+    font-size: 30px !important;
+}
+
+section.apa-yang-dapat-dilakukan .dilakukan-item {
+  text-align: center;
+  margin-bottom: 100px;
+}  
+
+section.apa-yang-dapat-dilakukan .device-container,
+section.apa-yang-dapat-dilakukan .feature-item {
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+section.apa-yang-dapat-dilakukan  .dilakukan-item i {
+  font-size: 80px;
+  background: -webkit-linear-gradient(to left, #7b4397, #dc2430);
+  background: linear-gradient(to left, #fdcc52, #dc2430);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+section.apa-yang-dapat-dilakukan .dilakukan-item p {
+  font-size: 30px;
+  color: white;
+}
+
+section.features .feature-item {
+  text-align: left;
+  margin-top: 20px;
+  padding-top: 200px;
+}
+
+.text-primary {
+  color: white !important;
+}
+
+.teach {
+    margin-bottom: 20px;
+    height: 60px;
+    width: 60px;
+    margin-top: 35px;
+}
+
+.earn {
+    margin-bottom: 20px;
+    height: 60px;
+    width: 60px;
+    margin-top: 35px;
+}
+
+.skill {
+    margin-bottom: 20px;
+    height: 60px;
+    width: 60px;
+    margin-top: 35px;   
+}
+
+
+@media (min-width: 992px) {
+  section.features .device-container,
+  section.features .feature-item {
+    max-width: none;
+  }
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+}
+.step { 
+  position: relative;
+   min-height: 32px /* circle-size */ ; 
+}
+.step > div:first-child { 
+  position: static; 
+  height: 0; 
+}
+
+.step > div:last-child { 
+  margin-left: 32px ; 
+  padding-left: 16px; 
+}
+.circle { 
+  background: #fdcc52; 
+  width: 32px; 
+  height: 32px; 
+  line-height: 32px; 
+  border-radius: 16px;
+  position: relative;
+  color: white;
+  text-align: center; 
+}
+.line { 
+  position: absolute; 
+  border-left: 1px solid gainsboro; 
+  left: 16px; 
+  bottom: 10px; 
+  top: 42px; 
+}
+.step:last-child 
+.line { 
+  display: none; 
+}
+.title { 
+  line-height: 32px; 
+  font-weight: bold;
+  font-size: 20px;
+  margin-bottom: 30px; 
+}
+
+.how-to-img{
+width: 300px;
+height: 600px;
+box-shadow: 5px 5px 5px #888888;
+margin-bottom: 50px;
+}
+
