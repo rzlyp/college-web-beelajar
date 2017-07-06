@@ -14,7 +14,7 @@ function MateriController(){
 	this.postAddMateri = (req, res, next) =>{
 		var storage = multer.diskStorage({
       		destination : function(req,file,callback){
-      			callback(null,'../../../public/img');
+      			callback(null,'public/img');
       		},
       		filename : function(req,file,callback){
       			console.log(file);
