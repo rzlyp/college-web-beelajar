@@ -18,6 +18,7 @@ var app = express();
 
 
 app.set('views', path.join(__dirname, 'app/views'));
+app.use(express.static(path.join(__dirname, 'public')));
 app.set('view engine', 'ejs');
 
 var conn = require('./config/database');
@@ -37,7 +38,6 @@ require('./app/routes/admin')(app,passport);
 require('./app/routes/users')(app,passport);
 app.use('/api',require('./app/routes/api/routes'));
 app.use(index);
-app.use(express.static(path.join(__dirname, 'public')));
 
 // error handler
 app.use(function(err, req, res, next) {
