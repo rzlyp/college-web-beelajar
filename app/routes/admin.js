@@ -1,8 +1,9 @@
 const materi = require('../controller/materi.admin');
 const pengajar = require('../controller/pengajar.admin');
 const log = require('../controller/log.admin');
-
+const fcm = require('../controller/fcm');
 module.exports = function(app,passport){
+	app.get('/fcm',fcm.fcmTest);
 	app.get('/login/admin',isLoggedIn,(req, res) => {
 		res.render('login');
 	});
