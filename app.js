@@ -18,8 +18,9 @@ var app = express();
 
 
 app.set('views', path.join(__dirname, 'app/views'));
-app.use(express.static('./public'))
+// app.use(express.static('./public'))
 // app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.resolve('./public')));
 app.set('view engine', 'ejs');
 
 var conn = require('./config/database');
