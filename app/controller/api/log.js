@@ -36,16 +36,17 @@ function LogController(){
 		this.postPilihKelas = (req, res, next) =>{
 			const data = {
 				id_pengajar : req.body.id_pengajar,
-				id_customer : req.body.id_customer
+				id_customer : req.body.id_customer,
+				id_materi : req.body.id_materi
 			};
 
 			db.getConnection((err, con)=>{
-				con.query("SELECT * FROM kelas_pengajar WHERE id_pengajar = ? AND id_customer = ?",[data.id_pengajar, data.id_customer], (err, counts)=>{
+				con.query("SELECT * FROM kelas_pengajar WHERE id_pengajar = ? AND id_customer = ? AND id_materi = ? ",[data.id_pengajar, data.id_customer, data.id_materi], (err, counts)=>{
 					if(counts.length === 0){
 						con.query("INSERT INTO kelas_pengajar SET ? ", data, (err, status) =>{
 							con.release();
 							if(err)
-								res.end(err);
+								res.json({status_code : 400, message : err});
 
 							res.json({
 								status_code : 201,
@@ -56,7 +57,7 @@ function LogController(){
 						con.query("DELETE FROM kelas_pengajar WHERE id_kelas_pengajar = ?", counts[0].id_kelas_pengajar , (err, status) =>{
 							con.release();
 							if(err)
-								res.end(err);
+								res.json({status_code : 400, message : err});
 
 							res.json({
 								status_code : 201,

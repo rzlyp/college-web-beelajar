@@ -1,7 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const jwt = require('jsonwebtoken');
+const async = require('async');
 const bcrypt = require('bcrypt-nodejs');
+
 const db = require('../../../config/database');
 const materi = require('../../controller/api/materi');
 const user = require('../../controller/api/users');
@@ -22,13 +24,12 @@ router.get('/',(req,res)=>{
 */
 
 router.post('/register',user.registerUser);
-router.get('/pengajar/profile/:id_pengajar/:id_customer',user.getProfile);
+router.get('/pengajar/profile/:id_pengajar/:id_customer/:id_materi',user.getProfile);
 router.post('/auth/pengajar',(req,res)=>{
 	const email = req.body.email;
-	const firebase_token = req.body.firebase_token;
 	db.getConnection(function(err,con){
 		con.query('SELECT * FROM pengajar where email = ? LIMIT 1',email,function(err,user){
-		con.release();
+		//con.release();
 			if(err)
 				console.log(err);
 
@@ -54,19 +55,48 @@ router.post('/auth/pengajar',(req,res)=>{
 							message : 'Failed ,wrong password or username'
 						});
 					}else{
-						con.query('Update pengajar set firebase_token = '+firebase_token+' where email = ? LIMIT 1',email,function(err,check){
-							con.release();
-						});
+					// 	con.query('Update pengajar set firebase_token = '+firebase_token+' where email = ? LIMIT 1',email,function(err,check){
+					// 		con.release();
+					// 	});
+
 						
 						var token = jwt.sign(user[0],"beelajarSecret",{
 							expiresIn : 60*60*24
 						});
-						res.json({
-							status_code : 200,
-							message : 'Login success',
-							data : user,
-							token : token
+
+							async.parallel({
+
+					profile : function(callback){
+				    	con.query('SELECT pengajar.id_pengajar, pengajar.`nama_pengajar`, pengajar.`deskripsi_pengajar`,lokasi_mengajar.lokasi_mengajar, pengajar.tarif_mengajar , AVG(rating.rating) AS rating FROM pengajar INNER JOIN lokasi_mengajar ON pengajar.`id_pengajar` = lokasi_mengajar.`id_pengajar` INNER JOIN rating ON rating.`id_pengajar` = `pengajar`.`id_pengajar` WHERE pengajar.id_pengajar = ?',user[0].id_pengajar,function(err,user){
+
+							if(err)
+								console.log(err);
+
+							callback(null, user);
 						});
+					},
+					keahlian : function(callback){
+						con.query('select materi.nama_materi from pengajar_materi INNER JOIN materi ON materi.id_materi = pengajar_materi.id_materi WHERE id_pengajar = ?',user[0].id_pengajar,function(err,user){
+							
+
+							if(err)
+								console.log(err);
+
+							callback(null, user);
+						});
+					}
+
+				}, function(err, results) {
+				   //console.log(results);
+
+				   
+				   res.json({	status_code : 200,
+									message : 'Login success',
+									data : results,
+									token : token
+								});
+				});
+						
 					}
 				}
 

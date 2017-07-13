@@ -138,7 +138,7 @@ function UserController(){
 						});
 					},
 					status_pilih : function(callback){
-						con.query("select * from kelas_pengajar where id_pengajar = ? AND id_customer = ?", [req.params.id_pengajar, req.params.id_customer], (err, data)=>{
+						con.query("select * from kelas_pengajar where id_pengajar = ? AND id_customer = ? AND id_materi = ?", [req.params.id_pengajar, req.params.id_customer, req.params.id_materi], (err, data)=>{
 							if(err)
 								res.send(err);
 
