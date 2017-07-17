@@ -35,7 +35,7 @@ module.exports = function(io,socket){
 		var val = {
 			id_kelas_mengajar :data.id_kelas_mengajar,
 			mulai_mengajar : data.mulai_mengajar,
-			selesai_mengajar : data.selesai_mengajar
+			akhir_mengajar : data.selesai_mengajar
 		};
 		db.getConnection((err, con) =>{
 			con.query('INSERT INTO log_mengajar SET ?', val , (err, status) =>{
