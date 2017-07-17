@@ -187,6 +187,31 @@ function UserController(){
 				});
 			});
 		}
+
+		this.getProfileMurid = (req, res , next) =>{
+				db.getConnection((err, con) =>{
+				con.query('select * from customer where id_customer = ?', req.params.id_customer , (err, murid) =>{
+					con.release();
+						res.json({
+							status_code : 200,
+							message : 'success get profile murid',
+							data : murid
+						});
+					});
+				});
+		}
+		this.getProfilePengajar = (req, res , next) =>{
+				db.getConnection((err, con) =>{
+				con.query("select * from pengajar where id_pengajar =  ? AND role='pengajar'", req.params.id_pengajar , (err, pengajar) =>{
+					con.release();
+						res.json({
+							status_code : 200,
+							message : 'success get profile pengajar',
+							data : pengajar
+						});
+					});
+				});
+		}
 	
 
 }
