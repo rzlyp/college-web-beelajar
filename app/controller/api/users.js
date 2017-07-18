@@ -142,9 +142,9 @@ function UserController(){
 							if(err)
 								res.send(err);
 
-							var status = false;
+							var status = 0;
 							if(data.length > 0){
-								status = true;
+								status = 1;
 							}
 
 							callback(null, status);
