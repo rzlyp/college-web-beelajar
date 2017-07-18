@@ -14,7 +14,7 @@ const ulasan = require('../../controller/api/ulasan');
 			router.get('/',(req,res)=>{
 				res.json({message : "Welcome to beelajar api"});
 			});
-
+			
 		router.get('/profile/murid/:id_customer', user.getProfileMurid);
 		router.get('/profile/pengajar/:id_pengajar',user.getProfilePengajar);
 		router.post('/register',user.registerUser);
@@ -71,7 +71,7 @@ const ulasan = require('../../controller/api/ulasan');
 							},
 							keahlian : function(callback){
 								con.query('select materi.nama_materi from pengajar_materi INNER JOIN materi ON materi.id_materi = pengajar_materi.id_materi WHERE id_pengajar = ?',user[0].id_pengajar,function(err,user){
-									
+								con.release();	
 
 									if(err)
 										console.log(err);
