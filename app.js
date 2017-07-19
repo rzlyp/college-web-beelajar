@@ -38,6 +38,13 @@ app.use(session({secret:'iloveyousomuch'}));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.header("Access-Control-Allow-Methods", "DELETE, GET, POST");
+  res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
+  next();
+});
 
 app.get('/socket', function (req, res) {
   res.sendfile(__dirname + '/public/chat.html');
