@@ -67,7 +67,7 @@ const ulasan = require('../../controller/api/ulasan');
 									async.parallel({
 
 							profile : function(callback){
-						    	con.query('SELECT pengajar.id_pengajar, pengajar.`nama_pengajar`, pengajar.`deskripsi_pengajar`,lokasi_mengajar.lokasi_mengajar, pengajar.tarif_mengajar , AVG(rating.rating) AS rating FROM pengajar INNER JOIN lokasi_mengajar ON pengajar.`id_pengajar` = lokasi_mengajar.`id_pengajar` INNER JOIN rating ON rating.`id_pengajar` = `pengajar`.`id_pengajar` WHERE pengajar.id_pengajar = ?',user[0].id_pengajar,function(err,user){
+						    	con.query('SELECT pengajar.id_pengajar, pengajar.`nama_pengajar`, pengajar.`deskripsi_pengajar`,lokasi_mengajar.lokasi_mengajar, pengajar.tarif_mengajar , AVG(rating.rating) AS rating, pengajar.foto_pengajar FROM pengajar INNER JOIN lokasi_mengajar ON pengajar.`id_pengajar` = lokasi_mengajar.`id_pengajar` INNER JOIN rating ON rating.`id_pengajar` = `pengajar`.`id_pengajar` WHERE pengajar.id_pengajar = ?',user[0].id_pengajar,function(err,user){
 
 									if(err)
 										console.log(err);
