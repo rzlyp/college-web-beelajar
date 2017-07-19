@@ -20,6 +20,8 @@ module.exports = function(app,passport){
 
 	app.get('/dashboard/admin/materi',isNotLogged, materi.getMateri);
 	app.post('/dashboard/admin/materi/add',isNotLogged, materi.postAddMateri);
+	app.post('/dashboard/admin/materi/update/:id_materi',isNotLogged, materi.postEdit);
+	app.get('/dashboard/admin/materi/hapus/:id_materi',isNotLogged, materi.deleteMateri);
 	app.get('/dashboard/admin/pengajar', isNotLogged,pengajar.getPengajar);
 	app.get('/dashboard/admin/pengajar/vertifikasi/:id_pengajar', isNotLogged,pengajar.getVertifikasi);
 	app.post('/dashboard/admin/pengajar/vertifikasi/:id_pengajar', isNotLogged,pengajar.postVertifikasi);

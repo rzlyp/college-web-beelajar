@@ -24,7 +24,8 @@
                           <td> <%= no %>
                           <td> <%= data.nama_materi %></td>
                           <td>
-                              <a class="tip" href="#" title="Edit"><i class="icon-pencil"></i></a> <a class="tip" href="#" title="Delete"><i class="icon-remove"></i></a>
+                              <a class="btn btn-primary btn-mini" href="#edit<%= no %>" data-toggle="modal" title="Edit">Edit</a> 
+                              <a class="btn btn-danger btn-mini" href="#hapus<%= no %>" data-toggle="modal" title="Delete">Hapus</a>
                           </td>
                         </tr>
                     <% no++; }); %>
@@ -62,6 +63,59 @@
               <div class="modal-footer"><button type="submit" class="btn btn-success">Save</button> <a data-dismiss="modal" class="btn" href="#">Cancel</a> </div>
               </form>
             </div>
+ <!-- start modal loop -->
+ <% 
+ var no = 1;
+ materi.forEach(function(data){ %>
+     <div id="edit<%= no %>" class="modal hide">
+              <div class="modal-header">
+                <button data-dismiss="modal" class="close" type="button">×</button>
+                <h3>Tambah Materi</h3>
+              </div>
+              <div class="modal-body">
+                  <form action="/dashboard/admin/materi/update/<%= data.id_materi %>" method="post" enctype="multipart/form-data" class="form-horizontal">
+
+                  <div class="control-group">
+                    <label for="checkboxes" class="control-label">Nama Materi</label>
+                    <div class="controls">
+                      <input type="text" class="form-control" name="nama_materi" value="<%= data.nama_materi %>">
+                    </div>
+                  </div>
+                  <div class="control-group">
+                    <label class="control-label">File upload input</label>
+                    <div class="controls">
+                      <input type="file" name="foto_materi" />
+                      <label><%= data.foto_materi %></label>
+                    </div>
+                  </div>
+
+                  
+                
+              </div>
+              <div class="modal-footer"><button type="submit" class="btn btn-success">Save</button> <a data-dismiss="modal" class="btn" href="#">Cancel</a> </div>
+              </form>
+            </div>
+            
+             <div id="hapus<%= no %>" class="modal hide">
+              <div class="modal-header">
+                <button data-dismiss="modal" class="close" type="button">×</button>
+                <h3>Hapus materi</h3>
+              </div>
+              <div class="modal-body">
+                  
+
+                  <div class="control-group">
+                    <div class="controls">
+                      <h3> Hapus materi <%= data.nama_materi %> ?</h3>
+                    </div>
+                  </div>
+                  </div>
+
+                  
+                
+              <div class="modal-footer"><a href="/dashboard/admin/materi/hapus/<%= data.id_materi %>" class="btn btn-danger">Hapus</a> <a data-dismiss="modal" class="btn" href="#">Cancel</a> </div>
+            </div>
+  <% no++; }); %>           
 <!--Footer-part-->
 <div class="row-fluid">
   <div id="footer" class="span12"> 2013 &copy; Matrix Admin. Brought to you by <a href="http://themedesigner.in">Themedesigner.in</a> </div>

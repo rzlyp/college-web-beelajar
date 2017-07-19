@@ -1,0 +1,68 @@
+<% include ./partials/header %>
+	<!--main-container-part-->
+
+<!--Action boxes-->
+  <div class="container-fluid">
+  <div class="row-fluid">
+    <div class="widget-box">
+
+        <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
+          <h5>Data Profile</h5>
+        </div>
+        <div class="widget-content nopadding">
+         
+      <form action="/pengajar/profile/update" method="post" enctype="multipart/form-data" class="form-horizontal">
+            <div class="control-group">
+              <label class="control-label">Nama Lengkap</label>
+              <div class="controls">
+                <input type="text" name="nama_pengajar" class="span7" <% if(user.nama_pengajar){ %> value="<%= user.nama_pengajar %>"  <% } %> />
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">Email</label>
+              <div class="controls">
+                <input type="text" name="email" class="span7" <% if(user.email){ %> value="<%= user.email %>" <% } %>/>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">No. Telp</label>
+              <div class="controls">
+                <input type="text" name="no_telp" class="span7" <% if(user.no_telp){ %> value="<%= user.no_telp %>" <% } %>/>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">Deskripsi/ Bio</label>
+              <div class="controls">
+                <textarea name="deskripsi" class="form-control"><%= user.deskripsi_pengajar %></textarea>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">Foto Profile</label>
+              <div class="controls">
+                <input type="file" name="foto_pengajar" />
+              </div>
+            </div>
+            <% if(user.foto_pengajar){ %> 
+                  <div class="control-group">
+                  <div class="controls">
+                    <img src="/img/<%= user.foto_pengajar %>" width="200" height="200" />
+                    <label><%= user.foto_pengajar %> </label>
+                  </div>
+                </div>
+             <% } %>
+            <div class="control-group">
+              <label class="control-label">New Password</label>
+              <div class="controls">
+                <input type="password" name="new_password" class="span7" />
+              </div>
+            </div>
+            <div class="form-actions">
+              <input type="submit" value="SIMPAN" class="btn btn-success" style="float:right">
+            </div>
+          </form>
+        </div>
+      </div>
+      </div>
+  </div>
+    
+<% include ./partials/footer %>

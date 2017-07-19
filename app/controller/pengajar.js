@@ -34,7 +34,7 @@ function PegajarController(){
 		db.getConnection((err, con) => {
 			async.parallel({
 				    ulasan: function(callback) {
-				        con.query('SELECT customer.`nama_customer` , rating.`rating`,rating.`ulasan`, rating.`created_at` FROM rating INNER JOIN customer ON customer.`id_customer` = rating.`id_customer` WHERE rating.`id_pengajar` = ? order by rating.created_at DESC LIMIT 10', req.user.id_pengajar, (err, data) =>{
+				        con.query("SELECT customer.`nama_customer` , rating.`rating`,rating.`ulasan`, DATE_FORMAT(rating.`created_at`, '%d %M %Y %H:%i') as created_at FROM rating INNER JOIN customer ON customer.`id_customer` = rating.`id_customer` WHERE rating.`id_pengajar` = ? order by rating.created_at DESC LIMIT 10", req.user.id_pengajar, (err, data) =>{
 				        	if(err)
 				        		console.log(err);
 
@@ -90,6 +90,65 @@ function PegajarController(){
 			});
 		});
 	}
+	this.getProfile = (req, res, next) =>{
+		res.render('pengajar/profile', {user : req.user});
+	}
+	this.updateProfile = (req, res, next) =>{
+			var storage = multer.diskStorage({
+	      		destination : function(req,file,callback){
+	      			callback(null,'public/img');
+	      		},
+	      		filename : function(req,file,callback){
+	      			console.log(file);
+	      			callback(null,file.originalname);
+	      		}
+	      	});
+	      	var upload = multer({storage:storage}).single('foto_pengajar');
+
+	      	upload(req, res , (err)=>{
+				      		db.getConnection((err,con) => {
+					      		con.query("select * from pengajar where id_pengajar = ?", req.user.id_pengajar, (err, check) => {
+					      			var password = req.body.new_password;
+					      			if(password === ''){
+					      				password = check[0].password
+					      			}else{
+					      				password = bcrypt.hashSync(password);
+					      			}
+					      			var data = {
+							      			nama_pengajar : req.body.nama_pengajar,
+							      			foto_pengajar : check[0].foto_pengajar,
+							      			no_telp : req.body.no_telp,
+							      			email : req.body.email,
+							      			deskripsi_pengajar : req.body.deskripsi,
+							      			password : password
+							      		}
+							      	
+					      			if(req.file){
+						      				 data = {
+								      			nama_pengajar : req.body.nama_pengajar,
+								      			foto_pengajar : req.file.filename,
+								      			no_telp : req.body.no_telp,
+								      			email : req.body.email,
+								      			deskripsi_pengajar : req.body.deskripsi
+								     }
+
+								      	   if(check[0].foto_pengajar !== 'avatar.png'){
+								      	   		fs.unlink('public/img/'+check[0].foto_pengajar);
+								      	   }
+								      	   
+
+					      			}
+					      			con.query('update pengajar set ? where id_pengajar = '+req.user.id_pengajar, data,(err, data) =>{
+									con.release();
+
+									res.redirect('/pengajar/profile');
+								});
+					      			
+					      		});
+								
+							});
+	      	});
+		}
 }
 
 module.exports = new PegajarController();

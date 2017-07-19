@@ -51,28 +51,6 @@ io.sockets.on('connection', function(socket){
   // logged = a.user;
   
 });
-app.post('/api/jadwal-mengajar', (req, res, next)=>{
-    var val = {
-          id_pengajar : req.body.id_pengajar,
-          id_customer : req.body.id_customer,
-          materi_mengajar : req.body.materi_mengajar,
-          tanggal_mengajar : req.body.tanggal_mengajar,
-          jam_mengajar : req.body.jam_mengajar
-        };
-      db.getConnection((err, con) =>{
-        con.query('INSERT INTO jadwal_mengajar SET ?', val , (err, status) =>{
-          con.query('select * from jadwal_mengajar where id_pengajar =  ? and id_customer = ? and materi_mengajar = ?', [val.id_pengajar, val.id_customer, val.materi_mengajar] , (err, status) =>{
-          con.release();
-            //io.sockets.emit('updatechat', socket.username, data.materi_mengajar+' @'+data.toUsername);
-            console.log(status);
-            console.log(logged[req.body.toUsername]);
-            test.to(user[req.body.toUsername]).emit('private', status);
-
-            res.json({status_code : 201, message : 'Berhasil menambahkan jadwal', data : status});
-          });
-        });
-      });
-  });
 require('./app/routes/admin')(app,passport);
 require('./app/routes/users')(app,passport);
 app.use('/api',require('./app/routes/api/routes'));

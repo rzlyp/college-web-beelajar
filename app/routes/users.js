@@ -16,6 +16,8 @@ module.exports = function(app,passport){
 		failureRedirect : '/pengajar/login',
 		failureFlash : true
 	}));
+	app.post('/pengajar/profile/update',isNotLogged, pengajar.updateProfile);
+	app.get('/pengajar/profile',isNotLogged, pengajar.getProfile);
 	app.get('/pengajar/dashboard',isNotLogged,pengajar.dashboard);
 	app.post('/pengajar/keahlian/add',isNotLogged,keahlian.addKeahlian);
 	app.post('/pengajar/keahlian/:id_pengajar_materi',isNotLogged,keahlian.removeKeahlian);
