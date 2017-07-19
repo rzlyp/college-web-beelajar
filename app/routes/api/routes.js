@@ -52,9 +52,15 @@ const ulasan = require('../../controller/api/ulasan');
 							// 	con.query('Update pengajar set firebase_token = '+firebase_token+' where email = ? LIMIT 1',email,function(err,check){
 							// 		con.release();
 							// 	});
+								var data = {
+									id_pengajar : user[0].id_pengajar,
+									nama_pengajar : user[0].nama_pengajar,
+									email : user[0].email,
+									role : user[0].role
 
+								}
 								
-								var token = jwt.sign(user[0],"beelajarSecret",{
+								var token = jwt.sign(data,"beelajarSecret",{
 									expiresIn : 60*60*24
 								});
 
@@ -133,7 +139,14 @@ const ulasan = require('../../controller/api/ulasan');
 									message : 'Failed ,wrong password or username'
 								});
 							}else{
-								var token = jwt.sign(user[0],"beelajarSecret",{
+								var data = {
+									id_customer : user[0].id_customer,
+									nama_customer : user[0].nama_customer,
+									email : user[0].email,
+									role : user[0].role
+
+								}
+								var token = jwt.sign(data,"beelajarSecret",{
 									expiresIn : 60*60*24
 								});
 								res.json({

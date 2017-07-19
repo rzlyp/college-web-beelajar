@@ -47,7 +47,7 @@ function LogController(){
 								res.json({status_code : 400, message : err});
 
 							res.json({
-								status_code : 201,
+								status_code : 200,
 								message : "Berhasil memilih pengajar"
 							});
 						});
