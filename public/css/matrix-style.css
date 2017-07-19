@@ -54,12 +54,12 @@ hr{ border-top-color:#dadada;}
 }
 #header h1 {
 	background: url("../img/logo.png") no-repeat scroll 0 0 transparent;
-	height: 31px;
+	height: 50px;
+	top:10px;
 	left: 20px;
 	line-height: 600px;
 	overflow: hidden;
 	position: relative;
-	top: 26px;
 	width: 191px;
 }
 #header h1 a {
@@ -102,7 +102,7 @@ hr{ border-top-color:#dadada;}
 #user-nav > ul {
 	margin: 0;
 	padding: 0;
-	list-style: none; border-right: 1px solid #2e363f;border-left: 1px solid #000;
+	list-style: none; border-right: 1px solid #FFF;border-left: 1px solid #FFF;
 }
 #user-nav > ul > li {
 	float: left;
@@ -115,6 +115,7 @@ hr{ border-top-color:#dadada;}
 	padding:9px 10px;
 	display: block;
 	font-size: 11px;
+	color: #FFF
 }
 #user-nav > ul > li > a:hover, #user-nav > ul > li.open > a {
 	color: #ffffff;  background:#000;
@@ -1462,7 +1463,7 @@ form {
 }
  @media (min-width: 481px) and (max-width: 970px) {
 body {
-	background:#49CCED
+	background:#fbc02d
 }
 #header h1 {
 	top:10px; left:35px;
