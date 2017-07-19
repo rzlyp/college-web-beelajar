@@ -17,7 +17,8 @@ module.exports = function(io,socket){
 			id_customer : data.id_customer,
 			materi_mengajar : data.materi_mengajar,
 			tanggal_mengajar : data.tanggal_mengajar,
-			jam_mengajar : data.jam_mengajar
+			jam_mengajar : data.jam_mengajar,
+			id_materi : data.id_materi
 		};
 		db.getConnection((err, con) =>{
 			con.query('INSERT INTO jadwal_mengajar SET ?', val , (err, status) =>{
