@@ -34,7 +34,10 @@ module.exports = function(io,socket){
 	});
 	socket.on('send log', function(data){
 		var val = {
-			id_kelas_mengajar :data.id_kelas_mengajar,
+			id_pengajar :data.id_pengajar,
+			id_customer : data.id_customer,
+			materi_mengajar : data.materi_mengajar,
+			id_materi : data.id_materi,
 			mulai_mengajar : data.mulai_mengajar,
 			akhir_mengajar : data.selesai_mengajar
 		};
