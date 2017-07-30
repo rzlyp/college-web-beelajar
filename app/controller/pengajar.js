@@ -1,7 +1,7 @@
 const multer = require('multer');
 const bcrypt = require('bcrypt-nodejs');
 const async = require('async');
-
+const fs = require('fs');
 
 const db = require('../../config/database');
 
