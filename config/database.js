@@ -1,9 +1,9 @@
 const mysql = require('mysql');
 
 const connection = mysql.createPool({
-	host :'ap-cdbr-azure-southeast-b.cloudapp.net',
-	user : 'bcd1c8cf53aef8',
-	password : 'ced445b5',
+	host :'52.230.4.225',
+	user : 'root',
+	password : 'code@labs',
 	database : 'beelajar'
 });
 module.exports = connection;
